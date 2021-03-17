@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import smbus
 import time
 
@@ -190,10 +189,10 @@ class INA219:
         return value * self._power_lsb
 
 #if __name__=='__main__':
-
-# Create an INA219 instance.
-ina219 = INA219(addr=0x42)
-while True:
+def check():
+    # Create an INA219 instance.
+    ina219 = INA219(addr=0x42)
+    while True:
         bus_voltage = ina219.getBusVoltage_V()             # voltage on V- (load side)
         shunt_voltage = ina219.getShuntVoltage_mV() / 1000 # voltage between V+ and V- across the shunt
         current = ina219.getCurrent_mA()                   # current in mA
@@ -206,9 +205,9 @@ while True:
         #print("PSU Voltage:   {:6.3f} V".format(bus_voltage + shunt_voltage))
         #print("Shunt Voltage: {:9.6f} V".format(shunt_voltage))
         print("Напряжение:  {:6.3f} V".format(bus_voltage))
-        print("Ток:         {:9.6f} A".format(current/1000))
-        print("Мощность:    {:6.3f} W".format(power))
-        print("Заряд:       {:3.1f}%".format(p))
+        print("Ток:       {:9.6f} A".format(current/1000))
+        print("Мощность:         {:6.3f} W".format(power))
+        print("Заряд батареи:       {:3.1f}%".format(p))
         print("")
 
         time.sleep(2)
